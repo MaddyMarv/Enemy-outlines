@@ -13,7 +13,6 @@ return {
                 title = "title_only_targeting_me",
                 tooltip = "desc_only_targeting_me",
             },
-            -- Aimed Target
             {
                 setting_id = "group_aimed",
                 type = "group",
@@ -47,7 +46,6 @@ return {
                     },
                 }
             },
-            -- Human Bosses
             {
                 setting_id = "group_human_bosses",
                 type = "group",
@@ -63,7 +61,6 @@ return {
                     { setting_id = "human_boss_b", type = "numeric", default_value = 100, range = {0, 255}, title = "title_b" },
                 }
             },
-            -- Monsters
             {
                 setting_id = "group_monsters",
                 type = "group",
@@ -79,7 +76,6 @@ return {
                     { setting_id = "monster_b", type = "numeric", default_value = 0, range = {0, 255}, title = "title_b" },
                 }
             },
-            -- Disablers
             {
                 setting_id = "group_disablers",
                 type = "group",
@@ -95,7 +91,6 @@ return {
                     { setting_id = "disabler_b", type = "numeric", default_value = 0, range = {0, 255}, title = "title_b" },
                 }
             },
-            -- Ranged Specials
             {
                 setting_id = "group_ranged_specials",
                 type = "group",
@@ -111,7 +106,6 @@ return {
                     { setting_id = "ranged_special_b", type = "numeric", default_value = 255, range = {0, 255}, title = "title_b" },
                 }
             },
-            -- Poxbursters
             {
                 setting_id = "group_poxbursters",
                 type = "group",
@@ -127,7 +121,6 @@ return {
                     { setting_id = "poxburster_b", type = "numeric", default_value = 0, range = {0, 255}, title = "title_b" },
                 }
             },
-            -- Ranged Elites
             {
                 setting_id = "group_ranged_elites",
                 type = "group",
@@ -143,7 +136,6 @@ return {
                     { setting_id = "ranged_elite_b", type = "numeric", default_value = 255, range = {0, 255}, title = "title_b" },
                 }
             },
-            -- Melee Elites
             {
                 setting_id = "group_melee_elites",
                 type = "group",

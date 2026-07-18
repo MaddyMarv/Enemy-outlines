@@ -37,7 +37,6 @@ local function _minion_alive_check(unit)
     return true
 end
 
--- Initialize the custom outlines in the settings
 local function update_outline_settings()
     local layers = get_material_layers()
 
@@ -99,7 +98,6 @@ mod.on_setting_changed = function(setting_id)
     _refresh_outlines = true
 end
 
--- Helpers for aggro tracking (inspired by better_downed)
 local function _resolve_target_from_game_object(enemy_unit, game_session, unit_spawner)
     local ok_go_id, game_object_id = pcall(function() return unit_spawner:game_object_id(enemy_unit) end)
     if not ok_go_id or not game_object_id then return nil end
@@ -134,7 +132,7 @@ local function _get_enemy_category(unit)
     if not unit_data_ext then return nil end
     local breed = unit_data_ext:breed()
     if not breed or not breed.tags then return nil end
-    
+
     if breed.tags.captain or breed.tags.cultist_captain then
         return "human_boss"
     elseif breed.tags.monster then
@@ -162,7 +160,6 @@ end
 local SCAN_INTERVAL = 0.25
 local _last_scan_time = 0
 
--- Cache tables with weak keys so they automatically clean themselves up when enemies die/despawn
 local _unit_category_cache = setmetatable({}, { __mode = "k" })
 local _unit_is_enemy_cache = setmetatable({}, { __mode = "k" })
 
@@ -222,7 +219,7 @@ mod.update = function(dt)
             end
         end
     end
-    
+
     local refresh = _refresh_outlines
     _refresh_outlines = false
 
@@ -250,7 +247,7 @@ mod.update = function(dt)
                     category = _get_enemy_category(unit) or false
                     _unit_category_cache[unit] = category
                 end
-                
+
                 if category then
                     local allowed_by_settings = false
                     local outline_name = nil
@@ -278,10 +275,8 @@ mod.update = function(dt)
                         outline_name = "mod_outline_melee_elite"
                     end
 
-                    -- Safety check before interacting with OutlineSystem
                     local has_extension = outline_system._unit_extension_data[unit] ~= nil
                     if has_extension then
-                        -- Check if we should remove all old outlines due to a color refresh
                         if refresh then
                             if outline_system:has_outline(unit, "mod_outline_human_boss") then outline_system:remove_outline(unit, "mod_outline_human_boss") end
                             if outline_system:has_outline(unit, "mod_outline_monster") then outline_system:remove_outline(unit, "mod_outline_monster") end
@@ -327,8 +322,7 @@ mod.update = function(dt)
                                 end
                             end
                         end
-                        
-                        -- Aimed Tracking (Independent of Categories)
+
                         if enable_aimed then
                             if unit == aimed_target then
                                 if not outline_system:has_outline(unit, "mod_outline_aimed") then
@@ -346,7 +340,6 @@ mod.update = function(dt)
                         end
                     end
                 else
-                    -- For non-boss/special/elite enemies (like standard Poxwalkers) we still want to outline them if aimed
                     local has_extension = outline_system._unit_extension_data[unit] ~= nil
                     if has_extension then
                         if refresh and outline_system:has_outline(unit, "mod_outline_aimed") then
