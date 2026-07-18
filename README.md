@@ -1,4 +1,4 @@
-### [Enemy Outlines](https://github.com/MaddyMarv/Enemy-outlines)
+### [Enemy Outlines](https://www.nexusmods.com/warhammer40kdarktide/mods/641)
 <img width="1474" height="829" alt="image" src="https://github.com/user-attachments/assets/e37c339d-450b-4995-a15d-35970b99d217" />
 
 Standalone mod that lets you highlight specials, elites, and regular enemies. If you have trouble spotting enemies in dark areas, or in hordes, or during lights-out modifiers, this helps a lot. It makes target prioritization much easier without having to constantly spam the ping button.
