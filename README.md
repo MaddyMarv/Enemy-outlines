@@ -1,5 +1,5 @@
 ### [Enemy Outlines](https://github.com/MaddyMarv/Enemy-outlines)
-<img width="385" height="216" alt="image" src="https://github.com/user-attachments/assets/73115e48-9edc-48f4-8b15-07c719bde947" />
+<img width="1474" height="829" alt="image" src="https://github.com/user-attachments/assets/e37c339d-450b-4995-a15d-35970b99d217" />
 
 Standalone mod that lets you highlight specials, elites, and regular enemies. If you have trouble spotting enemies in dark areas, or in hordes, or during lights-out modifiers, this helps a lot. It makes target prioritization much easier without having to constantly spam the ping button.
 
