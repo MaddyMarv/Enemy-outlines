@@ -41,43 +41,43 @@ local function update_outline_settings()
     local layers = get_material_layers()
 
     OutlineSettings.MinionOutlineExtension.mod_outline_human_boss = {
-        priority = 1,
+        priority = 20,
         color = get_rgb_color("human_boss"),
         material_layers = layers,
         visibility_check = _minion_alive_check,
     }
     OutlineSettings.MinionOutlineExtension.mod_outline_monster = {
-        priority = 2,
+        priority = 20,
         color = get_rgb_color("monster"),
         material_layers = layers,
         visibility_check = _minion_alive_check,
     }
     OutlineSettings.MinionOutlineExtension.mod_outline_disabler = {
-        priority = 3,
+        priority = 20,
         color = get_rgb_color("disabler"),
         material_layers = layers,
         visibility_check = _minion_alive_check,
     }
     OutlineSettings.MinionOutlineExtension.mod_outline_ranged_special = {
-        priority = 4,
+        priority = 20,
         color = get_rgb_color("ranged_special"),
         material_layers = layers,
         visibility_check = _minion_alive_check,
     }
     OutlineSettings.MinionOutlineExtension.mod_outline_poxburster = {
-        priority = 5,
+        priority = 20,
         color = get_rgb_color("poxburster"),
         material_layers = layers,
         visibility_check = _minion_alive_check,
     }
     OutlineSettings.MinionOutlineExtension.mod_outline_ranged_elite = {
-        priority = 6,
+        priority = 20,
         color = get_rgb_color("ranged_elite"),
         material_layers = layers,
         visibility_check = _minion_alive_check,
     }
     OutlineSettings.MinionOutlineExtension.mod_outline_melee_elite = {
-        priority = 7,
+        priority = 20,
         color = get_rgb_color("melee_elite"),
         material_layers = layers,
         visibility_check = _minion_alive_check,
@@ -132,7 +132,7 @@ local function _get_enemy_category(unit)
     if not unit_data_ext then return nil end
     local breed = unit_data_ext:breed()
     if not breed or not breed.tags then return nil end
-
+    
     if breed.tags.captain or breed.tags.cultist_captain then
         return "human_boss"
     elseif breed.tags.monster then
@@ -219,7 +219,7 @@ mod.update = function(dt)
             end
         end
     end
-
+    
     local refresh = _refresh_outlines
     _refresh_outlines = false
 
@@ -247,7 +247,7 @@ mod.update = function(dt)
                     category = _get_enemy_category(unit) or false
                     _unit_category_cache[unit] = category
                 end
-
+                
                 if category then
                     local allowed_by_settings = false
                     local outline_name = nil
@@ -322,7 +322,7 @@ mod.update = function(dt)
                                 end
                             end
                         end
-
+                        
                         if enable_aimed then
                             if unit == aimed_target then
                                 if not outline_system:has_outline(unit, "mod_outline_aimed") then
