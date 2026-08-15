@@ -3,7 +3,9 @@
     "author": "IndicaBunny",
     "version": "1.2",
     "source": "https://github.com/MaddyMarv/Enemy-outlines",
-    "kofi": "https://ko-fi.com/indicabunny",
+    "funding": {
+        "kofi": "https://ko-fi.com/indicabunny"
+    },
     "description": "Lets you customize and color enemies outlines to easily identify enemies in the hordes! (doesn't let you see through walls.)",
     "order": {
         "require": [],
