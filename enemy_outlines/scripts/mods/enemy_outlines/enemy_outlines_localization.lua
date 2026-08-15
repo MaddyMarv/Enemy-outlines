@@ -47,14 +47,8 @@ return {
     title_outline_melee_elites = {
         en = "Enable Melee Elite Outlines",
     },
-    title_r = {
-        en = "Red (0-255)",
-    },
-    title_g = {
-        en = "Green (0-255)",
-    },
-    title_b = {
-        en = "Blue (0-255)",
+    title_color = {
+        en = "Color",
     },
     title_only_targeting_me = {
         en = "Only Show Enemies Targeting Me",
@@ -67,5 +61,17 @@ return {
     },
     title_outline_aimed = {
         en = "Outline Aimed Enemy",
+    },
+    group_crushers_maulers = {
+        en = "Crushers & Maulers",
+    },
+    title_outline_crushers_maulers = {
+        en = "Enable Crusher & Mauler Outlines",
+    },
+    group_shooters = {
+        en = "Shooters (Dreg Stalker, Scab Shooter, Scab Stalker)",
+    },
+    title_outline_shooters = {
+        en = "Enable Shooter Outlines",
     },
 }

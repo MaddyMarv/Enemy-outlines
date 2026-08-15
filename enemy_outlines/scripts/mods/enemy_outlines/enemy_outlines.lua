@@ -3,10 +3,28 @@ local mod = get_mod("enemy_outlines")
 local OutlineSettings = require("scripts/settings/outline/outline_settings")
 
 local function get_rgb_color(prefix)
-    local r = mod:get(prefix .. "_r") or 255
-    local g = mod:get(prefix .. "_g") or 255
-    local b = mod:get(prefix .. "_b") or 255
-    return { r / 255, g / 255, b / 255 }
+    local c = mod:get(prefix .. "_color")
+    if c and type(c) == "table" and #c >= 3 then
+        return { c[2] / 255, c[3] / 255, c[4] / 255 }
+    end
+    -- Fallback defaults
+    local defaults = {
+        aimed = {255, 255, 255},
+        human_boss = {255, 50, 100},
+        monster = {255, 0, 0},
+        disabler = {0, 255, 0},
+        ranged_special = {0, 255, 255},
+        poxburster = {255, 255, 0},
+        ranged_elite = {0, 0, 255},
+        melee_elite = {81, 53, 146},
+        crushers_maulers = {255, 140, 0},
+        shooters = {245, 245, 135},
+    }
+    local d = defaults[prefix]
+    if d then
+        return { d[1] / 255, d[2] / 255, d[3] / 255 }
+    end
+    return { 1, 1, 1 }
 end
 
 local function get_material_layers()
@@ -88,6 +106,18 @@ local function update_outline_settings()
         material_layers = layers,
         visibility_check = _minion_alive_check,
     }
+    OutlineSettings.MinionOutlineExtension.mod_outline_crushers_maulers = {
+        priority = 20,
+        color = get_rgb_color("crushers_maulers"),
+        material_layers = layers,
+        visibility_check = _minion_alive_check,
+    }
+    OutlineSettings.MinionOutlineExtension.mod_outline_shooters = {
+        priority = 20,
+        color = get_rgb_color("shooters"),
+        material_layers = layers,
+        visibility_check = _minion_alive_check,
+    }
 end
 
 update_outline_settings()
@@ -142,17 +172,21 @@ local function _get_enemy_category(unit)
     elseif breed.tags.special then
         if breed.tags.bomber then
             return "poxburster"
-        elseif breed.ranged or breed.tags.scrambler or breed.tags.sniper then
+        elseif breed.ranged or breed.tags.scrambler or breed.tags.sniper or breed.name:find("grenadier") or breed.name:find("flamer") then
             return "ranged_special"
         else
             return "poxburster"
         end
     elseif breed.tags.elite then
-        if breed.ranged then
+        if breed.name == "chaos_ogryn_executor" or breed.name == "renegade_executor" then
+            return "crushers_maulers"
+        elseif breed.ranged then
             return "ranged_elite"
         else
             return "melee_elite"
         end
+    elseif breed.name == "cultist_assault" or breed.name == "renegade_assault" or breed.name == "renegade_rifleman" then
+        return "shooters"
     end
     return nil
 end
@@ -207,6 +241,8 @@ mod.update = function(dt)
     local enable_poxbursters = mod:get("outline_poxbursters")
     local enable_ranged_elites = mod:get("outline_ranged_elites")
     local enable_melee_elites = mod:get("outline_melee_elites")
+    local enable_crushers_maulers = mod:get("outline_crushers_maulers")
+    local enable_shooters = mod:get("outline_shooters")
     local only_targeting_me = mod:get("only_targeting_me")
     local enable_aimed = mod:get("outline_aimed")
     local aimed_target = nil
@@ -273,6 +309,12 @@ mod.update = function(dt)
                     elseif category == "melee_elite" and enable_melee_elites then
                         allowed_by_settings = true
                         outline_name = "mod_outline_melee_elite"
+                    elseif category == "crushers_maulers" and enable_crushers_maulers then
+                        allowed_by_settings = true
+                        outline_name = "mod_outline_crushers_maulers"
+                    elseif category == "shooters" and enable_shooters then
+                        allowed_by_settings = true
+                        outline_name = "mod_outline_shooters"
                     end
 
                     local has_extension = outline_system._unit_extension_data[unit] ~= nil

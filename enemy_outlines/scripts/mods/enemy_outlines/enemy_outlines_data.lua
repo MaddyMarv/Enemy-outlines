@@ -24,25 +24,10 @@ return {
                         title = "title_outline_aimed",
                     },
                     {
-                        setting_id = "aimed_r",
-                        type = "numeric",
-                        default_value = 255,
-                        range = {0, 255},
-                        title = "title_r",
-                    },
-                    {
-                        setting_id = "aimed_g",
-                        type = "numeric",
-                        default_value = 255,
-                        range = {0, 255},
-                        title = "title_g",
-                    },
-                    {
-                        setting_id = "aimed_b",
-                        type = "numeric",
-                        default_value = 255,
-                        range = {0, 255},
-                        title = "title_b",
+                        setting_id = "aimed_color",
+                        type = "color",
+                        default_value = {255, 255, 255, 255},
+                        title = "title_color",
                     },
                 }
             },
@@ -56,9 +41,12 @@ return {
                         default_value = true,
                         title = "title_outline_human_bosses",
                     },
-                    { setting_id = "human_boss_r", type = "numeric", default_value = 255, range = {0, 255}, title = "title_r" },
-                    { setting_id = "human_boss_g", type = "numeric", default_value = 50, range = {0, 255}, title = "title_g" },
-                    { setting_id = "human_boss_b", type = "numeric", default_value = 100, range = {0, 255}, title = "title_b" },
+                    {
+                        setting_id = "human_boss_color",
+                        type = "color",
+                        default_value = {255, 255, 50, 100},
+                        title = "title_color",
+                    },
                 }
             },
             {
@@ -71,9 +59,12 @@ return {
                         default_value = true,
                         title = "title_outline_monsters",
                     },
-                    { setting_id = "monster_r", type = "numeric", default_value = 255, range = {0, 255}, title = "title_r" },
-                    { setting_id = "monster_g", type = "numeric", default_value = 0, range = {0, 255}, title = "title_g" },
-                    { setting_id = "monster_b", type = "numeric", default_value = 0, range = {0, 255}, title = "title_b" },
+                    {
+                        setting_id = "monster_color",
+                        type = "color",
+                        default_value = {255, 255, 0, 0},
+                        title = "title_color",
+                    },
                 }
             },
             {
@@ -86,9 +77,12 @@ return {
                         default_value = true,
                         title = "title_outline_disablers",
                     },
-                    { setting_id = "disabler_r", type = "numeric", default_value = 0, range = {0, 255}, title = "title_r" },
-                    { setting_id = "disabler_g", type = "numeric", default_value = 255, range = {0, 255}, title = "title_g" },
-                    { setting_id = "disabler_b", type = "numeric", default_value = 0, range = {0, 255}, title = "title_b" },
+                    {
+                        setting_id = "disabler_color",
+                        type = "color",
+                        default_value = {255, 0, 255, 0},
+                        title = "title_color",
+                    },
                 }
             },
             {
@@ -101,9 +95,12 @@ return {
                         default_value = true,
                         title = "title_outline_ranged_specials",
                     },
-                    { setting_id = "ranged_special_r", type = "numeric", default_value = 0, range = {0, 255}, title = "title_r" },
-                    { setting_id = "ranged_special_g", type = "numeric", default_value = 255, range = {0, 255}, title = "title_g" },
-                    { setting_id = "ranged_special_b", type = "numeric", default_value = 255, range = {0, 255}, title = "title_b" },
+                    {
+                        setting_id = "ranged_special_color",
+                        type = "color",
+                        default_value = {255, 0, 255, 255},
+                        title = "title_color",
+                    },
                 }
             },
             {
@@ -116,9 +113,12 @@ return {
                         default_value = true,
                         title = "title_outline_poxbursters",
                     },
-                    { setting_id = "poxburster_r", type = "numeric", default_value = 255, range = {0, 255}, title = "title_r" },
-                    { setting_id = "poxburster_g", type = "numeric", default_value = 255, range = {0, 255}, title = "title_g" },
-                    { setting_id = "poxburster_b", type = "numeric", default_value = 0, range = {0, 255}, title = "title_b" },
+                    {
+                        setting_id = "poxburster_color",
+                        type = "color",
+                        default_value = {255, 255, 255, 0},
+                        title = "title_color",
+                    },
                 }
             },
             {
@@ -131,9 +131,12 @@ return {
                         default_value = true,
                         title = "title_outline_ranged_elites",
                     },
-                    { setting_id = "ranged_elite_r", type = "numeric", default_value = 0, range = {0, 255}, title = "title_r" },
-                    { setting_id = "ranged_elite_g", type = "numeric", default_value = 0, range = {0, 255}, title = "title_g" },
-                    { setting_id = "ranged_elite_b", type = "numeric", default_value = 255, range = {0, 255}, title = "title_b" },
+                    {
+                        setting_id = "ranged_elite_color",
+                        type = "color",
+                        default_value = {255, 0, 0, 255},
+                        title = "title_color",
+                    },
                 }
             },
             {
@@ -146,9 +149,48 @@ return {
                         default_value = true,
                         title = "title_outline_melee_elites",
                     },
-                    { setting_id = "melee_elite_r", type = "numeric", default_value = 81, range = {0, 255}, title = "title_r" },
-                    { setting_id = "melee_elite_g", type = "numeric", default_value = 53, range = {0, 255}, title = "title_g" },
-                    { setting_id = "melee_elite_b", type = "numeric", default_value = 146, range = {0, 255}, title = "title_b" },
+                    {
+                        setting_id = "melee_elite_color",
+                        type = "color",
+                        default_value = {255, 81, 53, 146},
+                        title = "title_color",
+                    },
+                }
+            },
+            {
+                setting_id = "group_crushers_maulers",
+                type = "group",
+                sub_widgets = {
+                    {
+                        setting_id = "outline_crushers_maulers",
+                        type = "checkbox",
+                        default_value = true,
+                        title = "title_outline_crushers_maulers",
+                    },
+                    {
+                        setting_id = "crushers_maulers_color",
+                        type = "color",
+                        default_value = {255, 255, 140, 0}, -- Dark Orange
+                        title = "title_color",
+                    },
+                }
+            },
+            {
+                setting_id = "group_shooters",
+                type = "group",
+                sub_widgets = {
+                    {
+                        setting_id = "outline_shooters",
+                        type = "checkbox",
+                        default_value = false,
+                        title = "title_outline_shooters",
+                    },
+                    {
+                        setting_id = "shooters_color",
+                        type = "color",
+                        default_value = {255, 245, 245, 135}, -- Beige
+                        title = "title_color",
+                    },
                 }
             },
         }
