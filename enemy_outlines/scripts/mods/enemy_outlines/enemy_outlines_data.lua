@@ -170,7 +170,7 @@ return {
                     {
                         setting_id = "crushers_maulers_color",
                         type = "color",
-                        default_value = {255, 255, 140, 0}, -- Dark Orange
+                        default_value = {255, 255, 80, 0}, -- Dark Orange
                         title = "title_color",
                     },
                 }
