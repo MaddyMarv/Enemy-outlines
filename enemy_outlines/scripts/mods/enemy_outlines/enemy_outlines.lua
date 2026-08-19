@@ -7,7 +7,6 @@ local function get_rgb_color(prefix)
     if c and type(c) == "table" and #c >= 3 then
         return { c[2] / 255, c[3] / 255, c[4] / 255 }
     end
-    -- Fallback defaults
     local defaults = {
         aimed = {255, 255, 255},
         human_boss = {255, 50, 100},
