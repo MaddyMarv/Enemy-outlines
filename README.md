@@ -5,9 +5,9 @@ Standalone mod that lets you highlight specials, elites, and regular enemies. If
 
 ### Does not show through walls! THIS IS NOT A WALLHACK MOD
 
-
 **Options:**
 - Only Show Enemies Targeting Me
-- Outline and Color Options (Aimed Enemy, Ranged Specials, Human Boss, Monster, Disabler, Poxburster, Ranged Elite, Melee Elite, Crusher & Mauler, Shooter)
+- Aimed Enemy Highlight
+- Outline and Color Options (Ranged Specials, Human Boss, Monster, Disabler, Poxburster, Ranged Elite, Melee Elite, Crusher & Mauler, Shooter)
 
 🔗 **Links:** [Source Code](https://github.com/MaddyMarv/Enemy-outlines) | [Nexus Mods Profile](https://www.nexusmods.com/profile/indicabunny) | [Support Me on Ko-fi](https://ko-fi.com/indicabunny)
