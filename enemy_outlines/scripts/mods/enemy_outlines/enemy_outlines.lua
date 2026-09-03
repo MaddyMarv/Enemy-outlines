@@ -18,6 +18,7 @@ local function get_rgb_color(prefix)
         melee_elite = {81, 53, 146},
         crushers_maulers = {255, 140, 0},
         shooters = {245, 245, 135},
+        chaff = {105, 55, 20},
     }
     local d = defaults[prefix]
     if d then
@@ -117,6 +118,12 @@ local function update_outline_settings()
         material_layers = layers,
         visibility_check = _minion_alive_check,
     }
+    OutlineSettings.MinionOutlineExtension.mod_outline_chaff = {
+        priority = 20,
+        color = get_rgb_color("chaff"),
+        material_layers = layers,
+        visibility_check = _minion_alive_check,
+    }
 end
 
 update_outline_settings()
@@ -184,10 +191,11 @@ local function _get_enemy_category(unit)
         else
             return "melee_elite"
         end
-    elseif breed.name == "cultist_assault" or breed.name == "renegade_assault" or breed.name == "renegade_rifleman" then
+    elseif breed.name == "cultist_assault" or breed.name == "renegade_assault" or breed.name == "renegade_rifleman" or breed.ranged then
         return "shooters"
+    else
+        return "chaff"
     end
-    return nil
 end
 
 local SCAN_INTERVAL = 0.25
@@ -242,6 +250,7 @@ mod.update = function(dt)
     local enable_melee_elites = mod:get("outline_melee_elites")
     local enable_crushers_maulers = mod:get("outline_crushers_maulers")
     local enable_shooters = mod:get("outline_shooters")
+    local enable_chaff = mod:get("outline_chaff")
     local only_targeting_me = mod:get("only_targeting_me")
     local enable_aimed = mod:get("outline_aimed")
     local aimed_target = nil
@@ -314,6 +323,9 @@ mod.update = function(dt)
                     elseif category == "shooters" and enable_shooters then
                         allowed_by_settings = true
                         outline_name = "mod_outline_shooters"
+                    elseif category == "chaff" and enable_chaff then
+                        allowed_by_settings = true
+                        outline_name = "mod_outline_chaff"
                     end
 
                     local has_extension = outline_system._unit_extension_data[unit] ~= nil
@@ -326,6 +338,9 @@ mod.update = function(dt)
                             if outline_system:has_outline(unit, "mod_outline_poxburster") then outline_system:remove_outline(unit, "mod_outline_poxburster") end
                             if outline_system:has_outline(unit, "mod_outline_ranged_elite") then outline_system:remove_outline(unit, "mod_outline_ranged_elite") end
                             if outline_system:has_outline(unit, "mod_outline_melee_elite") then outline_system:remove_outline(unit, "mod_outline_melee_elite") end
+                            if outline_system:has_outline(unit, "mod_outline_crushers_maulers") then outline_system:remove_outline(unit, "mod_outline_crushers_maulers") end
+                            if outline_system:has_outline(unit, "mod_outline_shooters") then outline_system:remove_outline(unit, "mod_outline_shooters") end
+                            if outline_system:has_outline(unit, "mod_outline_chaff") then outline_system:remove_outline(unit, "mod_outline_chaff") end
                             if outline_system:has_outline(unit, "mod_outline_aimed") then outline_system:remove_outline(unit, "mod_outline_aimed") end
                         end
 

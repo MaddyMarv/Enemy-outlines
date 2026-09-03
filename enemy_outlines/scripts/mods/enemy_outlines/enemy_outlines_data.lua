@@ -170,7 +170,7 @@ return {
                     {
                         setting_id = "crushers_maulers_color",
                         type = "color",
-                        default_value = {255, 255, 80, 0}, -- Dark Orange
+                        default_value = {255, 255, 80, 0},
                         title = "title_color",
                     },
                 }
@@ -188,7 +188,25 @@ return {
                     {
                         setting_id = "shooters_color",
                         type = "color",
-                        default_value = {255, 245, 245, 135}, -- Beige
+                        default_value = {255, 245, 245, 135},
+                        title = "title_color",
+                    },
+                }
+            },
+            {
+                setting_id = "group_chaff",
+                type = "group",
+                sub_widgets = {
+                    {
+                        setting_id = "outline_chaff",
+                        type = "checkbox",
+                        default_value = false,
+                        title = "title_outline_chaff",
+                    },
+                    {
+                        setting_id = "chaff_color",
+                        type = "color",
+                        default_value = {255, 105, 55, 20},
                         title = "title_color",
                     },
                 }

@@ -74,4 +74,10 @@ return {
     title_outline_shooters = {
         en = "Enable Shooter Outlines",
     },
+    group_chaff = {
+        en = "Chaff (Hordes, Roamers, Groaners, Poxwalkers)",
+    },
+    title_outline_chaff = {
+        en = "Enable Chaff Outlines",
+    },
 }
