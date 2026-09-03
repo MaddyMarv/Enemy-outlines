@@ -12,7 +12,7 @@ return {
         en = "Enable Human Boss Outlines",
     },
     group_monsters = {
-        en = "Monsters (Plague Ogryn, Chaos Spawn, Beast of Nurgle, Daemonhost, Houndmaster)",
+        en = "Monsters (Plague Ogryn, Chaos Spawn, etc...)",
     },
     title_outline_monsters = {
         en = "Enable Monster Outlines",
