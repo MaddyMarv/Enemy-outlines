@@ -7,4 +7,5 @@ Standalone mod that lets you highlight specials, elites, and regular enemies. If
 - Aimed Enemy Highlight & Color
 - Threat Outline & Color Options (Human Bosses, Monsters, Disablers, Ranged Specials, Poxbursters, Ranged Elites, Melee Elites, Crushers & Maulers, Shooters, Chaff)
 
-[b]Links:[/b] [url=https://github.com/MaddyMarv/Enemy-outlines]Source Code[/url] | [url=https://www.nexusmods.com/profile/indicabunny]Nexus Mods Profile[/url] | [url=https://ko-fi.com/indicabunny]Support Me on Ko-fi[/url]
+[b]Links:[/b]
+[url=https://github.com/MaddyMarv/Enemy-outlines]Source Code[/url] | [url=https://www.nexusmods.com/profile/indicabunny]Nexus Mods Profile[/url] | [url=https://ko-fi.com/indicabunny]Support Me on Ko-fi[/url]
