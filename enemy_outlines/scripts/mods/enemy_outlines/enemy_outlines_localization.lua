@@ -3,7 +3,7 @@ return {
         en = "Enemy Outlines",
     },
     mod_description = {
-        en = "Automatically outlines Elites, Specials, and Bosses to provide visual clarity.",
+        en = "Highlights specials, elites, and enemies with outlines.",
     },
     group_human_bosses = {
         en = "Human Bosses (Captains, Twins)",

@@ -7,7 +7,7 @@
     "funding": {
         "kofi": "https://ko-fi.com/indicabunny"
     },
-    "description": "Lets you customize and color enemies outlines to easily identify enemies in the hordes! (doesn't let you see through walls.)",
+    "description": "Highlights specials, elites, and enemies with outlines.",
     "dependencies": {
         "required": [],
         "self_after": [],
