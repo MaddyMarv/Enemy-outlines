@@ -4,8 +4,11 @@ local OutlineSettings = require("scripts/settings/outline/outline_settings")
 
 local function get_rgb_color(prefix)
     local c = mod:get(prefix .. "_color")
-    if c and type(c) == "table" and #c >= 3 then
-        return { c[2] / 255, c[3] / 255, c[4] / 255 }
+    if c and type(c) == "table" and #c >= 4 then
+        local a = (c[1] or 255) / 255
+        return { (c[2] / 255) * a, (c[3] / 255) * a, (c[4] / 255) * a }
+    elseif c and type(c) == "table" and #c >= 3 then
+        return { c[1] / 255, c[2] / 255, c[3] / 255 }
     end
     local defaults = {
         aimed = {255, 255, 255},
@@ -128,10 +131,57 @@ end
 
 update_outline_settings()
 
+local _MOD_OUTLINE_NAMES = {
+    "mod_outline_human_boss",
+    "mod_outline_monster",
+    "mod_outline_disabler",
+    "mod_outline_ranged_special",
+    "mod_outline_poxburster",
+    "mod_outline_ranged_elite",
+    "mod_outline_melee_elite",
+    "mod_outline_aimed",
+    "mod_outline_crushers_maulers",
+    "mod_outline_shooters",
+    "mod_outline_chaff",
+}
+
+local function _clear_all_mod_outlines()
+    local extension_manager = Managers.state and Managers.state.extension
+    if not extension_manager then return end
+
+    local outline_system = extension_manager:system("outline_system")
+    local side_system = extension_manager:system("side_system")
+    if not outline_system or not side_system then return end
+
+    for unit, _ in pairs(side_system.side_by_unit) do
+        if outline_system._unit_extension_data and outline_system._unit_extension_data[unit] then
+            for i = 1, #_MOD_OUTLINE_NAMES do
+                local name = _MOD_OUTLINE_NAMES[i]
+                if outline_system:has_outline(unit, name) then
+                    outline_system:remove_outline(unit, name)
+                end
+            end
+        end
+    end
+end
+
 local _refresh_outlines = false
 mod.on_setting_changed = function(setting_id)
     update_outline_settings()
     _refresh_outlines = true
+end
+
+mod.on_disabled = function(initial_call)
+    _clear_all_mod_outlines()
+end
+
+mod.on_enabled = function(initial_call)
+    update_outline_settings()
+    _refresh_outlines = true
+end
+
+mod.on_unload = function(exit_game)
+    _clear_all_mod_outlines()
 end
 
 local function _resolve_target_from_game_object(enemy_unit, game_session, unit_spawner)
@@ -205,6 +255,10 @@ local _unit_category_cache = setmetatable({}, { __mode = "k" })
 local _unit_is_enemy_cache = setmetatable({}, { __mode = "k" })
 
 mod.update = function(dt)
+    if not mod:is_enabled() then
+        return
+    end
+
     local run_heavy_scan = false
     _last_scan_time = _last_scan_time + dt
     if _last_scan_time >= SCAN_INTERVAL or _refresh_outlines then
@@ -252,7 +306,12 @@ mod.update = function(dt)
     local enable_shooters = mod:get("outline_shooters")
     local enable_chaff = mod:get("outline_chaff")
     local only_targeting_me = mod:get("only_targeting_me")
+    local max_distance = mod:get("max_distance")
+    if max_distance == nil then max_distance = 30 end
+    local max_dist_sq = max_distance > 0 and (max_distance * max_distance) or nil
+    local player_pos = Unit.local_position(player_unit, 1)
     local enable_aimed = mod:get("outline_aimed")
+    local aimed_ignore_distance = mod:get("aimed_ignore_distance_limit")
     local aimed_target = nil
     if enable_aimed and player_unit then
         local smart_targeting_extension = ScriptUnit.has_extension(player_unit, "smart_targeting_system") and ScriptUnit.extension(player_unit, "smart_targeting_system")
@@ -344,9 +403,17 @@ mod.update = function(dt)
                             if outline_system:has_outline(unit, "mod_outline_aimed") then outline_system:remove_outline(unit, "mod_outline_aimed") end
                         end
 
+                        local in_range = true
+                        if max_dist_sq and player_pos then
+                            local enemy_pos = Unit.local_position(unit, 1)
+                            if not enemy_pos or Vector3.distance_squared(player_pos, enemy_pos) > max_dist_sq then
+                                in_range = false
+                            end
+                        end
+
                         if run_heavy_scan then
                             local should_outline = false
-                            if allowed_by_settings then
+                            if allowed_by_settings and in_range then
                                 local passes_los = _check_line_of_sight(player_unit, unit)
 
                                 if passes_los then
@@ -379,7 +446,7 @@ mod.update = function(dt)
                             end
                         end
                         
-                        if enable_aimed then
+                        if enable_aimed and (in_range or aimed_ignore_distance) then
                             if unit == aimed_target then
                                 if not outline_system:has_outline(unit, "mod_outline_aimed") then
                                     outline_system:add_outline(unit, "mod_outline_aimed")
@@ -402,7 +469,15 @@ mod.update = function(dt)
                             outline_system:remove_outline(unit, "mod_outline_aimed")
                         end
 
-                        if enable_aimed then
+                        local in_range = true
+                        if max_dist_sq and player_pos then
+                            local enemy_pos = Unit.local_position(unit, 1)
+                            if not enemy_pos or Vector3.distance_squared(player_pos, enemy_pos) > max_dist_sq then
+                                in_range = false
+                            end
+                        end
+
+                        if enable_aimed and (in_range or aimed_ignore_distance) then
                             if unit == aimed_target then
                                 if not outline_system:has_outline(unit, "mod_outline_aimed") then
                                     outline_system:add_outline(unit, "mod_outline_aimed")

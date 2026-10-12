@@ -14,6 +14,16 @@ return {
                 tooltip = "desc_only_targeting_me",
             },
             {
+                setting_id = "max_distance",
+                type = "numeric",
+                default_value = 30,
+                range = { 0, 50 },
+                decimals_number = 0,
+                step_size_value = 1,
+                title = "title_max_distance",
+                tooltip = "desc_max_distance",
+            },
+            {
                 setting_id = "group_aimed",
                 type = "group",
                 sub_widgets = {
@@ -24,8 +34,16 @@ return {
                         title = "title_outline_aimed",
                     },
                     {
+                        setting_id = "aimed_ignore_distance_limit",
+                        type = "checkbox",
+                        default_value = true,
+                        title = "title_aimed_ignore_distance_limit",
+                        tooltip = "desc_aimed_ignore_distance_limit",
+                    },
+                    {
                         setting_id = "aimed_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 255, 255, 255},
                         title = "title_color",
                     },
@@ -44,6 +62,7 @@ return {
                     {
                         setting_id = "human_boss_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 255, 50, 100},
                         title = "title_color",
                     },
@@ -62,6 +81,7 @@ return {
                     {
                         setting_id = "monster_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 255, 0, 0},
                         title = "title_color",
                     },
@@ -80,6 +100,7 @@ return {
                     {
                         setting_id = "disabler_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 0, 255, 0},
                         title = "title_color",
                     },
@@ -98,6 +119,7 @@ return {
                     {
                         setting_id = "ranged_special_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 0, 255, 255},
                         title = "title_color",
                     },
@@ -116,6 +138,7 @@ return {
                     {
                         setting_id = "poxburster_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 255, 255, 0},
                         title = "title_color",
                     },
@@ -134,6 +157,7 @@ return {
                     {
                         setting_id = "ranged_elite_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 0, 0, 255},
                         title = "title_color",
                     },
@@ -152,6 +176,7 @@ return {
                     {
                         setting_id = "melee_elite_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 81, 53, 146},
                         title = "title_color",
                     },
@@ -170,6 +195,7 @@ return {
                     {
                         setting_id = "crushers_maulers_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 255, 80, 0},
                         title = "title_color",
                     },
@@ -188,6 +214,7 @@ return {
                     {
                         setting_id = "shooters_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 245, 245, 135},
                         title = "title_color",
                     },
@@ -206,6 +233,7 @@ return {
                     {
                         setting_id = "chaff_color",
                         type = "color",
+                        has_alpha = true,
                         default_value = {255, 105, 55, 20},
                         title = "title_color",
                     },

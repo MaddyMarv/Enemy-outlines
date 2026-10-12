@@ -56,11 +56,23 @@ return {
     desc_only_targeting_me = {
         en = "If enabled, enemies will only be outlined when they are actively targeting you.",
     },
+    title_max_distance = {
+        en = "Max Outline Distance",
+    },
+    desc_max_distance = {
+        en = "Maximum distance in meters to outline enemies. Set to 0 for unlimited distance.",
+    },
     group_aimed = {
         en = "Aimed Target Settings",
     },
     title_outline_aimed = {
         en = "Outline Aimed Enemy",
+    },
+    title_aimed_ignore_distance_limit = {
+        en = "Ignore Distance Limit for Aimed Target",
+    },
+    desc_aimed_ignore_distance_limit = {
+        en = "If enabled, the enemy you are aiming at will always be outlined regardless of the max outline distance slider.",
     },
     group_crushers_maulers = {
         en = "Crushers & Maulers",
