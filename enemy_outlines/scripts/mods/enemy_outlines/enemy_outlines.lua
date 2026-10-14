@@ -51,9 +51,26 @@ local function _check_line_of_sight(player_unit, target_unit)
     return not hit
 end
 
+local _outline_tag_fixed = setmetatable({}, { __mode = "k" })
+
+local function _fix_missing_outline_tags(unit)
+    local visual_loadout_extension = ScriptUnit.has_extension(unit, "visual_loadout_system") and ScriptUnit.extension(unit, "visual_loadout_system")
+    if not visual_loadout_extension then return end
+
+    for slot_name, slot in pairs(visual_loadout_extension:inventory_slots()) do
+        if slot.use_outline == nil and visual_loadout_extension:slot_unit(slot_name) then
+            slot.use_outline = true
+        end
+    end
+    _outline_tag_fixed[unit] = true
+end
+
 local function _minion_alive_check(unit)
     if not HEALTH_ALIVE[unit] then
         return false
+    end
+    if not _outline_tag_fixed[unit] then
+        _fix_missing_outline_tags(unit)
     end
     return true
 end
