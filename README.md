@@ -5,12 +5,14 @@ Highlights specials, elites, and enemies with outlines.
 
 **Does not show through walls! THIS IS NOT A WALLHACK MOD**
 
-**Options:**
+<details>
+<summary><b>Mod Settings / Commands</b></summary>
 
 **General**
 - Only Show Enemies Targeting Me
 - Max Outline Distance
 - Aimed Enemy Highlight & Color
 - Threat Outline & Color Options (Human Bosses, Monsters, Disablers, Ranged Specials, Poxbursters, Ranged Elites, Melee Elites, Crushers & Maulers, Shooters, Chaff)
+</details>
 
 🔗 **Links:** [Source Code](https://github.com/MaddyMarv/Enemy-outlines) | [Nexus Mods Profile](https://www.nexusmods.com/profile/indicabunny) | [Support Me on Ko-fi](https://ko-fi.com/indicabunny)
